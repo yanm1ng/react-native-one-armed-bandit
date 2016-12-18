@@ -212,13 +212,13 @@ export default class AwesomeProject extends Component {
 	}
 	render() {
 		return (
-			<View>
+			<View style={styles.background}>
 		        <View style={styles.container}>
 					<View>
 						<Text style={styles.title}>疯狂老虎机</Text>
 					</View>
 				</View>
-        		<Image source={require('./assets/prize_bg.png')} style={styles.scene}>
+        		<Image source={require('./assets/app_background.png')} style={styles.scene}>
 					<View style={styles.prizeScrollContainer}>
 						<View style={{flexDirection:'row',justifyContent:'space-between',position:'absolute',left:0,height:40,alignItems:'center',marginRight: 20,backgroundColor:'transparent',transform:[{translateX:WORDPOSITION}]}} ref={WORDCONTAINER}>
 							<Text style={styles.word}>这是一段文字1</Text>
@@ -294,11 +294,14 @@ export default class AwesomeProject extends Component {
 }
 
 const styles = StyleSheet.create({
+	background: {
+		backgroundColor: '#282828',
+	},
 	container: {
 		paddingTop: 30,
 		flexDirection: 'row',
 		height: 60,
-		backgroundColor: 'green',
+		backgroundColor: '#d79f16',
 		justifyContent: 'center',
 	},
 	title: {
