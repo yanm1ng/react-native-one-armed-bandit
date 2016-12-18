@@ -11,7 +11,7 @@ import {
 	Animated,
 	TouchableOpacity,
 	Dimensions,
-	NavigatorIOS,
+	Navigator,
 	Modal,
 	Button,
 	Alert
@@ -41,7 +41,7 @@ export default class AwesomeProject extends Component {
 		this._startScrollActurally = this._startScrollActurally.bind(this); //绑定
 		this._startWordAnimate = this._startWordAnimate.bind(this); //绑定
 		this._getPrize = this._getPrize.bind(this); //绑定
-		this._desc = this._desc.bind(this); //绑定
+		this._account = 2000;
 		this._rotate = 0; //遥感旋转角度
 		this._time = null; //计算时间
 		this._prizenum = 3; //竖列次数flag 用来约束点击摇奖
@@ -147,14 +147,6 @@ export default class AwesomeProject extends Component {
 			}
 		})
 	}
-	_desc() {
-		//点击说明滑动到下面文字
-		this.refs.CONTAINER.scrollTo({
-			x: 0,
-			y: 160,
-			animated: true
-		})
-	}
 	_getPrize() { //获奖
 		console.log('中奖序列', this._prizearr);
 	}
@@ -220,14 +212,13 @@ export default class AwesomeProject extends Component {
 	}
 	render() {
 		return (
-			<ScrollView style={styles.container} ref={CONTAINER}>
-		        <TouchableOpacity
-                    style={styles.buttons}
-                    onPress={() => Alert.alert('Button has been pressed!')}
-                >
-					<Text style={styles.buttonContent}>确定</Text>
-				</TouchableOpacity>
-        		<Image source={require('./assets/prize_bg.jpg')} style={styles.scene}>
+			<View>
+		        <View style={styles.container}>
+					<View>
+						<Text style={styles.title}>疯狂老虎机</Text>
+					</View>
+				</View>
+        		<Image source={require('./assets/prize_bg.png')} style={styles.scene}>
 					<View style={styles.prizeScrollContainer}>
 						<View style={{flexDirection:'row',justifyContent:'space-between',position:'absolute',left:0,height:40,alignItems:'center',marginRight: 20,backgroundColor:'transparent',transform:[{translateX:WORDPOSITION}]}} ref={WORDCONTAINER}>
 							<Text style={styles.word}>这是一段文字1</Text>
@@ -237,7 +228,7 @@ export default class AwesomeProject extends Component {
 							<Text style={styles.word}>这是一段文字5</Text>
 						</View>
 					</View>
-					<TouchableOpacity onPress={this._desc}  activeOpacity={1} >
+					<TouchableOpacity onPress={() => Alert.alert('Button has been pressed!')}  activeOpacity={1} >
 						<View style={styles.desc}></View>
 					</TouchableOpacity>
 					<View style={styles.prizeBingo}>
@@ -297,31 +288,24 @@ export default class AwesomeProject extends Component {
 						<Animated.Image source={require('./assets/btn_start.png')} style={[styles.starbtn,{transform:[{translateY:this.state.transformYValue},{rotateX:this.state.rotateXValue +'deg'}]}]} />
 					</TouchableOpacity>
 				</Image>
-      		</ScrollView>
+      		</View>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		flexDirection: 'column',
-		backgroundColor: '#F5FCFF',
-	},
-	buttons: {
-		height: 40,
-		width: 200,
-		borderRadius: 20,
+		paddingTop: 30,
+		flexDirection: 'row',
+		height: 60,
 		backgroundColor: 'green',
 		justifyContent: 'center',
 	},
-    buttonContent: {
-        textAlign: 'center',
-        color: 'white',
-    },
-	btns: {
-		flex: 1,
-		width: 30,
+	title: {
+		alignSelf: 'center',
+		color: '#FFFFFF',
+		fontWeight: 'bold',
+		fontSize: 16
 	},
 	scene: {
 		width: windowWidth,
