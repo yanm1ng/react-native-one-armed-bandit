@@ -110,7 +110,7 @@ export default class AwesomeProject extends Component {
 		const self = this;
 		const wordAnimated = function() {
 			let nowtime = Date.now();
-            let detatime = nowtime - wordTime;
+			let detatime = nowtime - wordTime;
 			wordTime = nowtime;
 			leftObject -= detatime * speed;
 			if (Math.abs(leftObject) > 500) {
@@ -171,7 +171,7 @@ export default class AwesomeProject extends Component {
 		const self = this;
 		const scroll = function() {
 			let nowtime = Date.now();
-            let detatime = nowtime - scrollTime;
+			let detatime = nowtime - scrollTime;
 			scrollTime = nowtime;
 			scrollObject += detatime * speed;
 
@@ -216,6 +216,9 @@ export default class AwesomeProject extends Component {
 		        <View style={styles.container}>
 					<View>
 						<Text style={styles.title}>疯狂老虎机</Text>
+					</View>
+					<View>
+						<Text style={styles.account}>￥{this._account}</Text>
 					</View>
 				</View>
         		<Image source={require('./assets/app_background.png')} style={styles.scene}>
@@ -298,14 +301,22 @@ const styles = StyleSheet.create({
 		backgroundColor: '#282828',
 	},
 	container: {
-		paddingTop: 30,
-		flexDirection: 'row',
+		paddingTop: 20,
+		flexDirection: 'column',
 		height: 60,
 		backgroundColor: '#d79f16',
 		justifyContent: 'center',
 	},
 	title: {
 		alignSelf: 'center',
+		color: '#FFFFFF',
+		fontWeight: 'bold',
+		fontSize: 16
+	},
+	account: {
+		marginTop: -18,
+		marginRight: 10,
+		alignSelf: 'flex-end',
 		color: '#FFFFFF',
 		fontWeight: 'bold',
 		fontSize: 16
