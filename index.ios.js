@@ -34,6 +34,7 @@ export default class AwesomeProject extends Component {
 	constructor(props) {
 		super(props);
 		this._startShake = this._startShake.bind(this); //绑定
+		this._showAccount = this._showAccount.bind(this);
 		this._rotateAnimated = this._rotateAnimated.bind(this); //绑定
 		this._rebackShake = this._rebackShake.bind(this); //绑定
 		this._startScroll = this._startScroll.bind(this); //绑定
@@ -210,6 +211,9 @@ export default class AwesomeProject extends Component {
 		cyclecount = Math.floor(Math.random() * 5) + 20;
 		setTimeout(this._startScrollActurally, 2000, 3, 1, cyclecount);
 	}
+	_showAccount() {
+		Alert.alert('当前余额为：￥' + this._account);
+	}
 	render() {
 		return (
 			<View style={styles.background}>
@@ -218,7 +222,7 @@ export default class AwesomeProject extends Component {
 						<Text style={styles.title}>疯狂老虎机</Text>
 					</View>
 					<View>
-						<Text style={styles.account}>￥{this._account}</Text>
+						<Text style={styles.account} onPress={this._showAccount}>￥{this._account}</Text>
 					</View>
 				</View>
         		<Image source={require('./assets/app_background.png')} style={styles.scene}>
