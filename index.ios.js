@@ -33,28 +33,31 @@ const WORDCONTAINER = 'WORDCONTAINER';
 export default class AwesomeProject extends Component {
 	constructor(props) {
 		super(props);
-		this._startShake = this._startShake.bind(this); //绑定
+
+		this._startShake = this._startShake.bind(this);
 		this._setGameModel = this._setGameModel.bind(this);
 		this._showAccount = this._showAccount.bind(this);
 		this._renderGameImage = this._renderGameImage.bind(this);
 		this._renderAImage = this._renderAImage.bind(this);
 		this._renderBImage = this._renderBImage.bind(this);
 		this._renderCImage = this._renderCImage.bind(this);
-		this._rotateAnimated = this._rotateAnimated.bind(this); //绑定
-		this._rebackShake = this._rebackShake.bind(this); //绑定
-		this._startScroll = this._startScroll.bind(this); //绑定
+		this._rotateAnimated = this._rotateAnimated.bind(this);
+		this._rebackShake = this._rebackShake.bind(this);
+		this._startScroll = this._startScroll.bind(this);
 		this._refSet = this._refSet.bind(this); //绑定
-		this._startScrollActurally = this._startScrollActurally.bind(this); //绑定
-		this._startWordAnimate = this._startWordAnimate.bind(this); //绑定
-		this._getPrize = this._getPrize.bind(this); //绑定
+		this._startScrollActurally = this._startScrollActurally.bind(this);
+		this._startWordAnimate = this._startWordAnimate.bind(this);
+		this._getPrize = this._getPrize.bind(this);
+
 		this._model = true;
-		this._account = 2000;
+		this._account = 2000; //初始金额
 		this._rotate = 0; //遥感旋转角度
 		this._time = null; //计算时间
-		this._prizetext = '';
+		this._prizetext = ''; //中奖显示的信息
 		this._prizenum = 3; //竖列次数flag 用来约束点击摇奖
 		this._prizearr = []; //记录最终摇奖序列
-		this.state = { //遥杆动画状态
+		this.state = {
+			//遥杆动画状态
 			transformYValue: new Animated.Value(0),
 			rotateXValue: 0,
 		};
@@ -128,7 +131,7 @@ export default class AwesomeProject extends Component {
 				self._setLeft(wordRefer, leftObject);
 				requestAnimationFrame(wordAnimated);
 			}
-		}
+		};
 		wordAnimated();
 	}
 	_startShake() {
@@ -162,6 +165,7 @@ export default class AwesomeProject extends Component {
 			item2: ["躺在桌子上", "一边唱征服一边", "站在凳子上"],
 			item3: ["跳小苹果", "一起大喊我是超人", "互相说我是蠢货"]
 		};
+
 		let prizeArr = this._prizearr;
 		let result = '';
 		if (this._model) {
@@ -281,8 +285,8 @@ export default class AwesomeProject extends Component {
 		)
 	}
 	_startScroll() {
-		//开启摇奖三列按顺序执行大循环随机
-		this._prizearr = []; //清掉抽奖组
+		//清掉抽奖组
+		this._prizearr = [];
 		let cyclecount = Math.floor(Math.random() * 5) + 20;
 		this._startScrollActurally(1, 4, cyclecount);
 		cyclecount = Math.floor(Math.random() * 5) + 20;
@@ -335,7 +339,7 @@ export default class AwesomeProject extends Component {
 						</View>
 					</View>
 					<TouchableOpacity onPress={this._setGameModel} activeOpacity={1}>
-						<View style={styles.desc}></View>
+						<View style={styles.desc}>{false}</View>
 					</TouchableOpacity>
 					<View style={styles.prizeBingo}>
 						<View style={styles.prizeBingoContainer}>
