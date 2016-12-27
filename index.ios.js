@@ -34,7 +34,12 @@ export default class AwesomeProject extends Component {
 	constructor(props) {
 		super(props);
 		this._startShake = this._startShake.bind(this); //绑定
+		this._setGameModel = this._setGameModel.bind(this);
 		this._showAccount = this._showAccount.bind(this);
+		this._renderGameImage = this._renderGameImage.bind(this);
+		this._renderAImage = this._renderAImage.bind(this);
+		this._renderBImage = this._renderBImage.bind(this);
+		this._renderCImage = this._renderCImage.bind(this);
 		this._rotateAnimated = this._rotateAnimated.bind(this); //绑定
 		this._rebackShake = this._rebackShake.bind(this); //绑定
 		this._startScroll = this._startScroll.bind(this); //绑定
@@ -42,9 +47,11 @@ export default class AwesomeProject extends Component {
 		this._startScrollActurally = this._startScrollActurally.bind(this); //绑定
 		this._startWordAnimate = this._startWordAnimate.bind(this); //绑定
 		this._getPrize = this._getPrize.bind(this); //绑定
+		this._model = true;
 		this._account = 2000;
 		this._rotate = 0; //遥感旋转角度
 		this._time = null; //计算时间
+		this._prizetext = '';
 		this._prizenum = 3; //竖列次数flag 用来约束点击摇奖
 		this._prizearr = []; //记录最终摇奖序列
 		this.state = { //遥杆动画状态
@@ -149,7 +156,31 @@ export default class AwesomeProject extends Component {
 		})
 	}
 	_getPrize() { //获奖
-		console.log('中奖序列', this._prizearr);
+		const itemArr1 = ["","",""];
+		const itemArr2 = {
+			item1: ["通讯录第六位", "在场名字中带N的", "左手边第三位"],
+			item2: ["躺在桌子上", "一边唱征服一边", "站在凳子上"],
+			item3: ["跳小苹果", "一起大喊我是超人", "互相说我是蠢货"]
+		};
+		let prizeArr = this._prizearr;
+		let result = '';
+		if (this._model) {
+			result = ''
+		} else {
+			result = itemArr2.item1[prizeArr[0]-1] + itemArr2.item2[prizeArr[1]-1] + itemArr2.item3[prizeArr[2]-1];
+		}
+		this._prizetext = result;
+		this.setState({
+			_prizetext: result
+		});
+		console.warn('中奖序列', this._prizearr, result);
+	}
+	_setGameModel() {
+		const currentModel = this._model;
+		this._model = !currentModel;
+		this.setState({
+			_model: !currentModel
+		})
 	}
 	_startScrollActurally(id, speed, cyclecount) { //抽奖具体执行
 		let scrollTime = Date.now();
@@ -173,6 +204,7 @@ export default class AwesomeProject extends Component {
 		const scroll = function() {
 			let nowtime = Date.now();
 			let detatime = nowtime - scrollTime;
+
 			scrollTime = nowtime;
 			scrollObject += detatime * speed;
 
@@ -180,8 +212,7 @@ export default class AwesomeProject extends Component {
 				let prizeindex = Math.floor(Math.random() * 6); //随机抽
 				let prizelevel = prizeindex % 3; //跟三取余找下标
 				self._prizearr.push(prizelevel + 1);
-				let tal = -prizelevel * SCROLLITEM - 22;
-				scrollObject = tal;
+				scrollObject = -prizelevel * SCROLLITEM - 22;
 				self._refSet(scrollRefer, scrollObject);
 				self._prizenum++;
 				if (self._prizenum === 3) {
@@ -198,8 +229,56 @@ export default class AwesomeProject extends Component {
 				}
 				requestAnimationFrame(scroll);
 			}
-		}
+		};
 		scroll();
+	}
+	_renderGameImage() {
+		return (
+			<View>
+				<Image source={require('./assets/scroll_item_1.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/scroll_item_2.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/scroll_item_3.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/scroll_item_1.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/scroll_item_2.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/scroll_item_3.png')} style={styles.prizeLevel} />
+			</View>
+		)
+	}
+	_renderAImage() {
+		return (
+			<View>
+				<Image source={require('./assets/a1.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/a2.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/a3.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/a1.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/a2.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/a3.png')} style={styles.prizeLevel} />
+			</View>
+		)
+	}
+	_renderBImage() {
+		return (
+			<View>
+				<Image source={require('./assets/b1.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/b2.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/b3.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/b1.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/b2.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/b3.png')} style={styles.prizeLevel} />
+			</View>
+		)
+	}
+	_renderCImage() {
+		return (
+			<View>
+				<Image source={require('./assets/c1.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/c2.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/c3.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/c1.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/c2.png')} style={styles.prizeLevel} />
+				<Image source={require('./assets/c3.png')} style={styles.prizeLevel} />
+			</View>
+		)
 	}
 	_startScroll() {
 		//开启摇奖三列按顺序执行大循环随机
@@ -225,17 +304,20 @@ export default class AwesomeProject extends Component {
 						<Text style={styles.account} onPress={this._showAccount}>￥{this._account}</Text>
 					</View>
 				</View>
+				<TouchableOpacity onPress={() => alert('asas')} activeOpacity={1} style={styles.choose1}>
+					<Image source={require('./assets/btn1.png')} style={styles.choosebtn}/>
+				</TouchableOpacity>
         		<Image source={require('./assets/app_background.png')} style={styles.scene}>
 					<View style={styles.prizeScrollContainer}>
 						<View style={{flexDirection:'row',justifyContent:'space-between',position:'absolute',left:0,height:40,alignItems:'center',marginRight: 20,backgroundColor:'transparent',transform:[{translateX:WORDPOSITION}]}} ref={WORDCONTAINER}>
-							<Text style={styles.word}>这是一段文字1</Text>
-							<Text style={styles.word}>这是一段文字2</Text>
-							<Text style={styles.word}>这是一段文字3</Text>
-							<Text style={styles.word}>这是一段文字4</Text>
-							<Text style={styles.word}>这是一段文字5</Text>
+							<Text style={styles.word}>{this._prizetext}</Text>
+							<Text style={styles.word}>{this._prizetext}</Text>
+							<Text style={styles.word}>{this._prizetext}</Text>
+							<Text style={styles.word}>{this._prizetext}</Text>
+							<Text style={styles.word}>{this._prizetext}</Text>
 						</View>
 					</View>
-					<TouchableOpacity onPress={() => Alert.alert('Button has been pressed!')}  activeOpacity={1} >
+					<TouchableOpacity onPress={this._setGameModel} activeOpacity={1}>
 						<View style={styles.desc}></View>
 					</TouchableOpacity>
 					<View style={styles.prizeBingo}>
@@ -248,12 +330,11 @@ export default class AwesomeProject extends Component {
 								width: 69, }}
 								ref = {SCROLL1REF}
 							>
-								<Image source={require('./assets/scroll_item_1.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_2.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_3.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_1.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_2.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_3.png')} style={styles.prizeLevel} />
+								{	this._model ?
+									this._renderGameImage()
+									:
+									this._renderAImage()
+								}
 							</Animated.View>
 						</View>
 						<View style={styles.prizeBingoContainer}>
@@ -265,12 +346,11 @@ export default class AwesomeProject extends Component {
 								width: 69, }}
 								ref={SCROLL2REF}
 							>
-								<Image source={require('./assets/scroll_item_1.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_2.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_3.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_1.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_2.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_3.png')} style={styles.prizeLevel} />
+								{	this._model ?
+									this._renderGameImage()
+									:
+									this._renderBImage()
+								}
 							</Animated.View>
 						</View>
 						<View style={styles.prizeBingoContainer}>
@@ -282,16 +362,15 @@ export default class AwesomeProject extends Component {
 								width: 69, }}
 								ref={SCROLL3REF}
 							>
-								<Image source={require('./assets/scroll_item_1.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_2.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_3.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_1.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_2.png')} style={styles.prizeLevel} />
-								<Image source={require('./assets/scroll_item_3.png')} style={styles.prizeLevel} />
+								{	this._model ?
+									this._renderGameImage()
+									:
+									this._renderCImage()
+								}
 							</Animated.View>
 						</View>
 					</View>
-					<TouchableOpacity onPress={this._startShake}  activeOpacity={1} >
+					<TouchableOpacity onPress={this._startShake} activeOpacity={1}>
 						<Animated.Image source={require('./assets/btn_start.png')} style={[styles.starbtn,{transform:[{translateY:this.state.transformYValue},{rotateX:this.state.rotateXValue +'deg'}]}]} />
 					</TouchableOpacity>
 				</Image>
@@ -329,12 +408,18 @@ const styles = StyleSheet.create({
 		width: windowWidth,
 		height: windowHeight,
 	},
+	choosebtn: {
+		width: windowWidth,
+	},
+	choose1: {
+		width: windowWidth,
+	},
 	starbtn: {
 		position: 'absolute',
 		width: windowWidth * 0.09375,
 		height: windowHeight * 0.1080,
 		left: windowWidth * 0.8125,
-		top: windowHeight * 0.4035,
+		top: windowHeight * 0.3135,
 	},
 	prizeBingo: {
 		position: 'absolute',
@@ -371,6 +456,7 @@ const styles = StyleSheet.create({
 		overflow: 'hidden',
 	},
 	word: {
+		marginTop: 4,
 		marginRight: 20,
 		fontSize: 20,
 		color: '#88F1F6',
