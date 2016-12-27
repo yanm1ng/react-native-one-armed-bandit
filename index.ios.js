@@ -304,10 +304,27 @@ export default class AwesomeProject extends Component {
 						<Text style={styles.account} onPress={this._showAccount}>￥{this._account}</Text>
 					</View>
 				</View>
-				<TouchableOpacity onPress={() => alert('asas')} activeOpacity={1} style={styles.choose1}>
-					<Image source={require('./assets/btn1.png')} style={styles.choosebtn}/>
-				</TouchableOpacity>
         		<Image source={require('./assets/app_background.png')} style={styles.scene}>
+			        <View>
+				        <TouchableOpacity onPress={() => alert('a')} activeOpacity={1}>
+					        <Image source={require('./assets/choose_btn_1.png')} style={styles.choosebtn1}/>
+				        </TouchableOpacity>
+			        </View>
+			        <View>
+				        <TouchableOpacity onPress={() => alert('b')} activeOpacity={1}>
+					        <Image source={require('./assets/choose_btn_2.png')} style={styles.choosebtn2}/>
+				        </TouchableOpacity>
+			        </View>
+			        <View>
+				        <TouchableOpacity onPress={() => alert('c')} activeOpacity={1}>
+					        <Image source={require('./assets/choose_btn_3.png')} style={styles.choosebtn3}/>
+				        </TouchableOpacity>
+			        </View>
+			        <View>
+				        <TouchableOpacity onPress={() => alert('start')} activeOpacity={1}>
+					        <Image source={require('./assets/choose_end.png')} style={styles.chooseend}/>
+				        </TouchableOpacity>
+			        </View>
 					<View style={styles.prizeScrollContainer}>
 						<View style={{flexDirection:'row',justifyContent:'space-between',position:'absolute',left:0,height:40,alignItems:'center',marginRight: 20,backgroundColor:'transparent',transform:[{translateX:WORDPOSITION}]}} ref={WORDCONTAINER}>
 							<Text style={styles.word}>{this._prizetext}</Text>
@@ -387,7 +404,7 @@ const styles = StyleSheet.create({
 		paddingTop: 20,
 		flexDirection: 'column',
 		height: 60,
-		backgroundColor: '#d79f16',
+		backgroundColor: '#f7b908',
 		justifyContent: 'center',
 	},
 	title: {
@@ -408,18 +425,43 @@ const styles = StyleSheet.create({
 		width: windowWidth,
 		height: windowHeight,
 	},
-	choosebtn: {
-		width: windowWidth,
+	choosebtn1: {
+		position: 'absolute',
+		flexDirection: 'row',
+		marginTop: 12,
+		marginLeft: windowWidth * 0.02,
+		width: windowWidth * 0.30,
+		height: windowHeight * 0.06,
 	},
-	choose1: {
+	choosebtn2: {
+		position: 'absolute',
+		flexDirection: 'row',
+		marginTop: 12,
+		left: windowWidth * 0.35,
+		width: windowWidth * 0.30,
+		height: windowHeight * 0.06,
+	},
+	choosebtn3: {
+		position: 'absolute',
+		flexDirection: 'row',
+		marginTop: 12,
+		left: windowWidth * 0.68,
+		width: windowWidth * 0.30,
+		height: windowHeight * 0.06,
+	},
+	chooseend: {
+		position: 'absolute',
+		marginTop: windowHeight * 0.165,
 		width: windowWidth,
+		height: windowHeight * 0.056,
+		//backgroundColor: '#FFFFFF',
 	},
 	starbtn: {
 		position: 'absolute',
 		width: windowWidth * 0.09375,
 		height: windowHeight * 0.1080,
-		left: windowWidth * 0.8125,
-		top: windowHeight * 0.3135,
+		left: windowWidth * 0.8135,
+		top: windowHeight * 0.4035,
 	},
 	prizeBingo: {
 		position: 'absolute',
