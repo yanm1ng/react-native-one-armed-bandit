@@ -222,7 +222,7 @@ export default class AwesomeProject extends Component {
 				if (self._prizenum === 3) {
 					setTimeout(self._getPrize, 1000);
 				}
-				return;
+				return false;
 			} else {
 				if (scrollObject >= 0) { //重复
 					scrollObject = scrollOriginalTop;
@@ -308,7 +308,7 @@ export default class AwesomeProject extends Component {
 						<Text style={styles.account} onPress={this._showAccount}>￥{this._account}</Text>
 					</View>
 				</View>
-        		<Image source={require('./assets/app_background.png')} style={styles.scene}>
+        		<Image source={require('./assets/background.png')} style={styles.scene}>
 			        <View>
 				        <TouchableOpacity onPress={() => alert('a')} activeOpacity={1}>
 					        <Image source={require('./assets/choose_btn_1.png')} style={styles.choosebtn1}/>
