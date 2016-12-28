@@ -219,10 +219,14 @@ export default class AwesomeProject extends Component {
 		//console.warn('中奖序列', this._prizearr);
 	}
 	_setGameModel() {
+		this._prizearr = [];
+		this._prizetext = '';
 		const currentModel = this._model;
 		this._model = !currentModel;
 		this.setState({
-			_model: !currentModel
+			_model: !currentModel,
+			_prizetext: '',
+			_prizearr: []
 		})
 	}
 	_startScrollActurally(id, speed, cyclecount) { //抽奖具体执行
@@ -326,6 +330,11 @@ export default class AwesomeProject extends Component {
 	_startScroll() {
 		//清掉抽奖组
 		this._prizearr = [];
+		this._prizetext = '';
+		this.setState({
+			_prizetext: '',
+			_prizearr: []
+		});
 		let cyclecount = Math.floor(Math.random() * 5) + 20;
 		this._startScrollActurally(1, 4, cyclecount);
 		cyclecount = Math.floor(Math.random() * 5) + 20;
