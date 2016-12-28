@@ -326,7 +326,7 @@ export default class AwesomeProject extends Component {
 			        </View>
 			        <View>
 				        <TouchableOpacity onPress={() => alert('start')} activeOpacity={1}>
-					        <Image source={require('./assets/choose_end.png')} style={styles.chooseend}/>
+					        <Image source={require('./assets/choose_ok.png')} style={styles.chooseend}/>
 				        </TouchableOpacity>
 			        </View>
 					<View style={styles.prizeScrollContainer}>
