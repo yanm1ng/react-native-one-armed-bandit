@@ -211,10 +211,12 @@ export default class AwesomeProject extends Component {
 
 		const addAccount = this._account + add;
 		this._account = addAccount;
+		this._choose = false;
 		this._prizetext = result;
 		this.setState({
 			_prizetext: result,
-			_account: addAccount
+			_account: addAccount,
+			_choose: false
 		});
 		//console.warn('中奖序列', this._prizearr);
 	}
