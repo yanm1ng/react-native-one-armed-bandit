@@ -211,8 +211,8 @@ export default class AwesomeProject extends Component {
 
 		const addAccount = this._account + add;
 		this._account = addAccount;
-		this._choose = false;
 		this._prizetext = result;
+		this._choose = false;
 		this.setState({
 			_prizetext: result,
 			_account: addAccount,
@@ -616,7 +616,7 @@ const styles = StyleSheet.create({
 	word: {
 		marginTop: 4,
 		marginRight: 20,
-		fontSize: 20,
+		fontSize: 15,
 		color: '#88F1F6',
 		backgroundColor: 'transparent'
 	}

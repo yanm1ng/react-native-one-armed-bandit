@@ -212,9 +212,11 @@ export default class AwesomeProject extends Component {
 		const addAccount = this._account + add;
 		this._account = addAccount;
 		this._prizetext = result;
+		this._choose = false;
 		this.setState({
 			_prizetext: result,
-			_account: addAccount
+			_account: addAccount,
+			_choose: false
 		});
 		//console.warn('中奖序列', this._prizearr);
 	}
@@ -401,26 +403,26 @@ export default class AwesomeProject extends Component {
 								</TouchableOpacity>
 							</View>
 							<View>
-									{ this._num == -1 &&
-										<Text style={styles.notice}>
-											你还没有选择下注的水果
-										</Text>
-									}
-									{ this._num == 1 &&
-										<Text style={styles.notice}>
-											你选择了樱桃
-										</Text>
-									}
-									{ this._num == 2 &&
-										<Text style={styles.notice}>
-											你选择了柠檬
-										</Text>
-									}
-									{ this._num == 3 &&
-										<Text style={styles.notice}>
-											你选择了菠萝
-										</Text>
-									}
+								{ this._num == -1 &&
+								<Text style={styles.notice}>
+									你还没有选择下注的水果
+								</Text>
+								}
+								{ this._num == 1 &&
+								<Text style={styles.notice}>
+									你选择了樱桃
+								</Text>
+								}
+								{ this._num == 2 &&
+								<Text style={styles.notice}>
+									你选择了柠檬
+								</Text>
+								}
+								{ this._num == 3 &&
+								<Text style={styles.notice}>
+									你选择了菠萝
+								</Text>
+								}
 							</View>
 							<View>
 								<TouchableOpacity onPress={this._checkChoose} activeOpacity={1}>
@@ -453,7 +455,7 @@ export default class AwesomeProject extends Component {
 								flexDirection: 'column',
 								justifyContent: 'space-between',
 								width: 69, }}
-								ref = {SCROLL1REF}
+							               ref = {SCROLL1REF}
 							>
 								{	this._model ?
 									this._renderGameImage()
@@ -469,7 +471,7 @@ export default class AwesomeProject extends Component {
 								flexDirection: 'column',
 								justifyContent: 'space-between',
 								width: 69, }}
-								ref={SCROLL2REF}
+							               ref={SCROLL2REF}
 							>
 								{	this._model ?
 									this._renderGameImage()
@@ -485,7 +487,7 @@ export default class AwesomeProject extends Component {
 								flexDirection: 'column',
 								justifyContent: 'space-between',
 								width: 69, }}
-								ref={SCROLL3REF}
+							               ref={SCROLL3REF}
 							>
 								{	this._model ?
 									this._renderGameImage()
@@ -614,7 +616,7 @@ const styles = StyleSheet.create({
 	word: {
 		marginTop: 4,
 		marginRight: 20,
-		fontSize: 20,
+		fontSize: 15,
 		color: '#88F1F6',
 		backgroundColor: 'transparent'
 	}
