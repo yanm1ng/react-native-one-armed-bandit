@@ -147,7 +147,7 @@ export default class AwesomeProject extends Component {
 	}
 	_startShake() {
 		//摇奖点击
-		if((!this._choose) && this._model) {
+		if((!this._choose) && this._model == true) {
 			Alert.alert('温馨提示', '请先选择你要下注的水果');
 		} else {
 			if (this._prizenum === 3) {
