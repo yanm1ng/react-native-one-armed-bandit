@@ -54,7 +54,7 @@ export default class AwesomeProject extends Component {
 
 		this._model = true;
 		this._account = 2000; //初始金额
-		this._num = -1;
+		this._num = 0;
 		this._choose = false;
 		this._rotate = 0; //遥感旋转角度
 		this._time = null; //计算时间
@@ -72,10 +72,15 @@ export default class AwesomeProject extends Component {
 		this._startWordAnimate(0.05);
 	}
 	_setNum(num) {
-		this._num = num;
-		this.setState({
-			_num: num
-		});
+		if(this._choose) {
+      Alert.alert('温馨提示', '你已经下注了请点击摇杆进行游戏');
+		}
+		else {
+      this._num = num;
+      this.setState({
+        _num: num
+      });
+		}
 	}
 	_rebackShake() {
 		//回去
@@ -353,14 +358,19 @@ export default class AwesomeProject extends Component {
 		const arr1 = ['', '你选择了樱桃', '你选择了柠檬', '你选择了菠萝'];
 		const arr2 = ['', '50', '100', '200'];
 		if(this._num == 0) {
-			alert('你还没有任何下注');
+      Alert.alert('温馨提示', '你还没有任何下注');
 		} else {
-			const self = this;
+			if(this._choose){
+        Alert.alert('温馨提示', '你已经下注了请点击摇杆进行游戏');
+			}
+			else {
+        const self = this;
 
-			Alert.alert(arr1[this._num], '将会扣取你￥' + arr2[this._num], [
-				{text: '取消', onPress: () => console.log('OK Pressed!')},
-				{text: '确认下注', onPress: () => self._setChoose()},
-			]);
+        Alert.alert(arr1[this._num], '将会扣取你￥' + arr2[this._num], [
+          {text: '取消', onPress: () => console.log('OK Pressed!')},
+          {text: '确认下注', onPress: () => self._setChoose()},
+        ]);
+			}
 		}
 	}
 	_setChoose() {
@@ -403,7 +413,7 @@ export default class AwesomeProject extends Component {
 								</TouchableOpacity>
 							</View>
 							<View>
-								{ this._num == -1 &&
+								{ this._num == 0 &&
 								<Text style={styles.notice}>
 									你还没有选择下注的水果
 								</Text>
