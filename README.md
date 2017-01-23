@@ -1,23 +1,24 @@
-#react-native-one-armed-bandit
+# react-native-one-armed-bandit
 
-#需要环境
+## 需要环境
 
-```
-react-native
-```  
+React-Native
+
 IOS Xcode >= 7.0
 Android Android JDK
 ##安装教程
 [React-Native中文网](http://http://reactnative.cn/docs/0.39/getting-started.html)
 
-#运行测试
+## 运行测试
 
-##IOS
+### IOS
 
 ```
-react-native run-ios
+$ react-native run-ios
 ```
-##Android
+### Android
 ```
-react-native run-android
+$ react-native run-android
 ```
+
+安卓环境下还有些问题🤒
