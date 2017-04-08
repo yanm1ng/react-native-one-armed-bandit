@@ -22,3 +22,6 @@ $ react-native run-android
 ```
 
 安卓环境下还有些问题🤒
+
+## 截图
+![](https://ww4.sinaimg.cn/large/006tKfTcgy1fefjp9bj9eg30u01hcu0x.gif)
